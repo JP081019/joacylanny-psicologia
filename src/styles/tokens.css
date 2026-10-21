@@ -1,0 +1,18 @@
+:root {
+  --color-charcoal: #1D1B1A;
+  --color-coffee: #51433F;
+  --color-taupe: #9C796A;
+  --color-sand: #D8C7B8;
+  --color-ivory: #F6F1EB;
+  --background-primary: var(--color-ivory);
+  --background-secondary: var(--color-sand);
+  --background-dark: var(--color-charcoal);
+  --text-primary: var(--color-charcoal);
+  --text-secondary: var(--color-coffee);
+  --text-inverse: var(--color-ivory);
+  --border-subtle: rgba(81, 67, 63, 0.18);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --gutter: clamp(24px, 5vw, 88px);
+  --section-space: clamp(80px, 9vw, 144px);
+}
