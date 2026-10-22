@@ -7,15 +7,13 @@ export function Hero() {
     <section id="inicio" className={styles.hero} aria-labelledby="hero-title">
       <div className={`container ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
-          <p className="eyebrow" data-hero-reveal>Joacylanny Psicologia</p>
+          <p className="eyebrow" data-hero-reveal>{site.hero.eyebrow}</p>
           <h1 id="hero-title" tabIndex={-1}>
-            <span className={styles.titleLine}><span data-hero-line>Um espaço </span></span>
-            <span className={styles.titleLine}><span data-hero-line>para a sua </span></span>
-            <span className={styles.titleLine}><span data-hero-line>história.</span></span>
+            {site.hero.titleLines.map(line => <span className={styles.titleLine} key={line}><span data-hero-line>{line}</span></span>)}
           </h1>
           <p className={`body-copy ${styles.heroDescription}`} data-hero-reveal>{site.hero.description}</p>
           <div data-hero-reveal><a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="button">Agendar atendimento <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
-          <p className={styles.heroCredentials} data-hero-reveal>{site.role} <span /> {site.crp}</p>
+          <p className={styles.heroCredentials} data-hero-reveal>{site.role} | {site.positioning} <span /> {site.crp}</p>
         </div>
         <div className={styles.heroVisual} data-portal-target>
           <div className={styles.architecture} data-portal-image>

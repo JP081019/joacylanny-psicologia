@@ -10,11 +10,11 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", displa
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "Joacylanny Psicologia | Um espaço para a sua história", template: "%s | Joacylanny Psicologia" },
-  description: "Psicoterapia de orientação psicanalítica para adultos e adolescentes. Conheça Joacylanny, Psicóloga Clínica, CRP 22/02243, e entre em contato.",
+  title: { default: site.seo.title, template: "%s | Joacylanny Psicologia" },
+  description: site.seo.description,
   alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "pt_BR", siteName: site.brand, title: "Um espaço para a sua história | Joacylanny Psicologia", description: site.hero.description, url: site.url, images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.brand }] },
-  twitter: { card: "summary_large_image", title: site.brand, description: site.hero.description, images: ["/opengraph-image"] },
+  openGraph: { type: "website", locale: "pt_BR", siteName: site.brand, title: site.seo.title, description: site.seo.description, url: site.url, images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.seo.title }] },
+  twitter: { card: "summary_large_image", title: site.seo.title, description: site.seo.description, images: ["/opengraph-image"] },
   icons: { icon: "/logo/Arco Minimalista em Tons Terrosos.ico", apple: site.images.monogram },
 };
 

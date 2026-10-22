@@ -8,8 +8,8 @@ export function Manifesto() {
     <section id="escuta" className={`container ${styles.manifesto}`} aria-labelledby="manifesto-title">
       <div className={styles.manifestoLabel}><span className="eyebrow">O valor da escuta</span><span className={styles.smallRule} /></div>
       <div>
-        <h2 id="manifesto-title" className="section-title" data-reveal>Nem tudo precisa ser compreendido de imediato.</h2>
-        <div className={styles.manifestoText}><span className={styles.asterisk} aria-hidden="true">✳</span><p className="body-copy">Há histórias que precisam de tempo, de palavras e de alguém que escute. A psicoterapia é um espaço para falar sobre o que você vive, respeitando o seu ritmo e a sua forma de estar no mundo.</p></div>
+        <h2 id="manifesto-title" className="section-title" data-reveal>{site.manifesto.title}</h2>
+        <div className={styles.manifestoText}><span className={styles.asterisk} aria-hidden="true">✳</span><p className="body-copy">{site.manifesto.text}</p></div>
       </div>
     </section>
   );
@@ -20,7 +20,7 @@ export function About() {
     <section id="sobre" className={styles.about} aria-labelledby="about-title">
       <div className={`container ${styles.aboutGrid}`}>
         <figure className={styles.portraitFigure}>
-          <div className={styles.portraitFrame} data-image-reveal><Image src={site.images.portrait} alt="Joacylanny, psicóloga clínica, em um jardim com luz natural." fill sizes="(max-width: 800px) 90vw, 40vw" className={styles.portrait} /></div>
+          <div className={styles.portraitFrame} data-image-reveal><Image src={site.images.portrait} alt="Joacylanny, psicóloga com atuação orientada pela Psicanálise, em um jardim com luz natural." fill sizes="(max-width: 800px) 90vw, 40vw" className={styles.portrait} /></div>
           <figcaption>{site.name} <span>{site.role} · {site.crp}</span></figcaption>
         </figure>
         <div className={styles.aboutCopy}>
@@ -40,11 +40,13 @@ export function Approach() {
     <section id="abordagem" className={`container ${styles.approach}`} aria-labelledby="approach-title">
       <div className={styles.sectionIntro}>
         <span className="eyebrow">A abordagem</span>
-        <h2 id="approach-title" className="section-title" data-reveal>Uma escuta que acolhe<br />a sua singularidade.</h2>
+        <div>
+          <h2 id="approach-title" className="section-title" data-reveal>{site.approach.title}</h2>
+          <div className={styles.approachIntroduction}>{site.approach.paragraphs.map(p => <p className="body-copy" key={p}>{p}</p>)}</div>
+        </div>
       </div>
       <div className={styles.approachRows}>
-        <article className={styles.approachRow}><span className={styles.rowIndex}>01</span><h3>Psicanálise</h3><p className="body-copy">Um espaço de fala em que sua história pode ser escutada e pensada, sem a pressa de chegar a respostas prontas. A orientação psicanalítica convida à reflexão sobre aquilo que se repete, o que se sente e o que ainda não encontra palavras.</p><i className="bi bi-arrow-up-right" aria-hidden="true" /></article>
-        <article className={styles.approachRow}><span className={styles.rowIndex}>02</span><h3>Neuropsicologia</h3><p className="body-copy">A pós-graduação em Neuropsicologia compõe a formação profissional, ampliando a compreensão dos processos cognitivos e sua relação com a vida emocional. Um conhecimento que soma ao olhar e à escuta clínica.</p><i className="bi bi-arrow-up-right" aria-hidden="true" /></article>
+        {site.approach.concepts.map((concept, index) => <article className={styles.approachRow} key={concept.title}><span className={styles.rowIndex}>0{index + 1}</span><h3>{concept.title}</h3><p className="body-copy">{concept.text}</p><i className="bi bi-arrow-up-right" aria-hidden="true" /></article>)}
       </div>
     </section>
   );
@@ -75,7 +77,7 @@ export function FinalCTA() {
   return (
     <section id="contato" className={styles.finalCta} aria-labelledby="contact-title">
       <div className={`container ${styles.finalGrid}`}>
-        <div><span className="eyebrow">Um convite à sua história</span><h2 id="contact-title" data-reveal>Existe espaço<br />para a sua história.</h2><p>Quando fizer sentido para você,<br />este pode ser o seu primeiro passo.</p><a className="button button-light" href={site.whatsapp} target="_blank" rel="noopener noreferrer">Entrar em contato <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
+        <div><span className="eyebrow">Um convite à sua história</span><h2 id="contact-title" data-reveal>Existe espaço<br />para a sua história.</h2><p>{site.finalCta.text}</p><a className="button button-light" href={site.whatsapp} target="_blank" rel="noopener noreferrer">Entrar em contato <i className="bi bi-arrow-up-right" aria-hidden="true" /></a></div>
         <div className={styles.finalSymbol}><Monogram /><span>Escutar é abrir espaço.</span></div>
       </div>
     </section>

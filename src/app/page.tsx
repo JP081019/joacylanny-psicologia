@@ -6,7 +6,7 @@ import { site } from "@/data/site-content";
 import styles from "@/components/sections/Sections.module.css";
 
 export default function Home() {
-  const jsonLd = { "@context": "https://schema.org", "@type": "Person", name: site.name, jobTitle: site.role, url: site.url, telephone: site.phone, identifier: site.crp, image: `${site.url}${encodeURI(site.images.portrait)}`, knowsAbout: ["Psicanálise", "Psicologia", "Neuropsicologia"] };
+  const jsonLd = { "@context": "https://schema.org", "@type": "Person", name: site.name, jobTitle: site.role, description: site.positioning, url: site.url, telephone: site.phone, identifier: site.crp, image: `${site.url}${encodeURI(site.images.portrait)}`, knowsAbout: ["Psicanálise", "Psicologia"] };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />

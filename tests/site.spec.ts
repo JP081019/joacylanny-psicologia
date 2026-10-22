@@ -43,11 +43,11 @@ test("movimento reduzido, FAQ por teclado e navegação interna", async ({ page 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.getByRole("dialog", { name: introName })).not.toBeVisible();
-  const question = page.getByRole("button", { name: "Preciso ter um diagnóstico para procurar terapia?" });
+  const question = page.getByRole("button", { name: "Preciso ter um diagnóstico para procurar atendimento?" });
   await question.focus();
   await page.keyboard.press("Enter");
   await expect(question).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByRole("region", { name: "Preciso ter um diagnóstico para procurar terapia?" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Preciso ter um diagnóstico para procurar atendimento?" })).toBeVisible();
   await page.keyboard.press("Space");
   await expect(question).toHaveAttribute("aria-expanded", "false");
   await page.getByRole("navigation", { name: "Navegação principal", exact: true }).getByRole("link", { name: "Sobre", exact: true }).click();
@@ -86,6 +86,9 @@ test("responsividade, imagens e capturas em quatro larguras", async ({ page }) =
     await page.locator("main img").evaluateAll(images => Promise.all(images.map(img => (img as HTMLImageElement).decode().catch(() => {}))));
     const size = await page.evaluate(() => ({ page: document.documentElement.scrollWidth, viewport: innerWidth }));
     expect(size.page, `overflow em ${width}px`).toBeLessThanOrEqual(size.viewport);
+    await expect(page.locator("h1")).toHaveText("Um espaço para escutar o que há de singular em você.");
+    const headingWidth = await page.locator("h1").evaluate(el => ({ content: el.scrollWidth, box: el.clientWidth }));
+    expect(headingWidth.content, `título em ${width}px`).toBeLessThanOrEqual(headingWidth.box + 1);
     const badImages = await page.locator("main img").evaluateAll(images => images.filter(el => !(el as HTMLImageElement).complete || (el as HTMLImageElement).naturalWidth === 0).map(el => el.getAttribute("src")));
     expect(badImages).toEqual([]);
     if (width === 390 || width === 1440) {
@@ -109,7 +112,7 @@ test("sem JavaScript: conteúdo e contato permanecem disponíveis", async ({ bro
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("Um espaço para a sua história.");
+  await expect(page.locator("h1")).toHaveText("Um espaço para escutar o que há de singular em você.");
   await expect(page.getByRole("heading", { name: "Prazer, sou Joacylanny." })).toBeVisible();
   await expect(page.getByRole("dialog", { name: introName })).not.toBeVisible();
   await expect(page.getByRole("link", { name: "Agendar atendimento", exact: true }).last()).toHaveAttribute("href", /^https:\/\/wa.me\/5599918401780/);
@@ -119,13 +122,45 @@ test("sem JavaScript: conteúdo e contato permanecem disponíveis", async ({ bro
 test("SEO, política de privacidade, contatos e crédito", async ({ page, request }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page).toHaveTitle(/Joacylanny Psicologia/);
+  await expect(page).toHaveTitle("Joacylanny | Psicologia e Psicanálise");
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "Joacylanny | Psicologia e Psicanálise");
+  await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "Joacylanny | Psicologia e Psicanálise");
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://joacylannypsi.com.br");
   await expect(page.getByRole("link", { name: /Desenvolvido por/ })).toHaveAttribute("href", "https://jpcreative.com.br");
   await page.getByRole("link", { name: "Política de privacidade", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de privacidade");
   for (const path of ["/sitemap.xml", "/robots.txt", "/opengraph-image"]) expect((await request.get(path)).status(), path).toBe(200);
+});
+
+test("reposicionamento: Psicanálise central, formação complementar e oito dúvidas úteis", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(page.locator("#inicio")).toContainText("Psicologia e Psicanálise");
+  await expect(page.locator("#inicio")).toContainText("Psicóloga | Atendimento de orientação psicanalítica");
+  await expect(page.locator("#inicio")).toContainText("CRP 22/02243");
+  await expect(page.locator("#abordagem h2")).toHaveText("A escuta que vai além do que é dito.");
+  await expect(page.locator("#abordagem h3")).toHaveText(["A palavra", "A singularidade", "O tempo"]);
+  await expect(page.locator("#abordagem")).not.toContainText("Neuropsicologia");
+  await expect(page.locator("#sobre")).toContainText("mais de 10 anos de formação em Psicologia");
+  await expect(page.locator("#sobre")).toContainText("formação contínua pelo Corpo Freudiano");
+  await expect(page.locator("#sobre")).toContainText("pós-graduação em Neuropsicologia, como formação complementar");
+  const mentions = page.locator("main p, main li").filter({ hasText: "Neuropsicologia" });
+  expect(await mentions.evaluateAll(nodes => nodes.every(n => n.closest("section")?.id === "sobre"))).toBe(true);
+  const structuredData = JSON.parse(await page.locator('script[type="application/ld+json"]').innerText());
+  expect(structuredData).toMatchObject({ jobTitle: "Psicóloga", description: "Atendimento de orientação psicanalítica", identifier: "CRP 22/02243", knowsAbout: ["Psicanálise", "Psicologia"] });
+  const questions = page.locator("#duvidas button");
+  await expect(questions).toHaveCount(8);
+  for (const question of await questions.all()) {
+    await question.click();
+    await expect(question).toHaveAttribute("aria-expanded", "true");
+    const answer = page.locator(`#${await question.getAttribute("aria-controls")}`);
+    await expect(answer).toBeVisible();
+    await expect(answer).not.toHaveText("");
+  }
+  const whatsappLinks = page.locator('a[href^="https://wa.me/"]');
+  const originalUrl = "https://wa.me/5599918401780?text=" + encodeURIComponent("Olá, Joacylanny! Gostaria de obter informações sobre o atendimento psicológico.");
+  for (const link of await whatsappLinks.all()) await expect(link).toHaveAttribute("href", originalUrl);
 });
 
 test("acessibilidade WCAG: desktop e menu móvel", async ({ page }) => {

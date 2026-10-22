@@ -2,11 +2,11 @@
 .heroGrid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 100px); min-height: min(780px, calc(100svh - 150px)); align-items: center; padding-top: 45px; padding-bottom: 36px; }
 .heroCopy { padding-block: 25px; }
 .heroCopy > .eyebrow { margin-bottom: 28px; }
-.heroCopy h1 { font-size: clamp(66px, 7.05vw, 104px); line-height: .99; letter-spacing: -.045em; margin-top: 25px; margin-bottom: 27px; outline: none; }
+.heroCopy h1 { font-size: clamp(56px, 5.8vw, 86px); line-height: .99; letter-spacing: -.045em; margin-top: 25px; margin-bottom: 27px; outline: none; }
 .titleLine { display: block; overflow: clip; padding-bottom: .08em; margin-bottom: -.08em; }
 .titleLine > span { display: block; }
 .heroDescription { max-width: 410px; font-size: 14px; line-height: 1.9; margin-bottom: 28px; }
-.heroCredentials { display: flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: .03em; color: var(--color-coffee); margin-top: 22px; }
+.heroCredentials { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 10px; letter-spacing: .03em; color: var(--color-coffee); margin-top: 22px; }
 .heroCredentials > span { width: 3px; height: 3px; border-radius: 50%; background: var(--color-taupe); }
 .heroVisual { position: relative; height: clamp(480px, 43vw, 660px); align-self: stretch; margin-top: 8px; }
 .architecture { position: absolute; inset: 0; overflow: clip; background: var(--color-sand); border-radius: 48% 48% 0 0; }
@@ -40,6 +40,8 @@
 .approach { padding-block: var(--section-space); }
 .sectionIntro { display: grid; grid-template-columns: 1fr 2fr; gap: 45px; align-items: start; margin-bottom: 64px; }
 .sectionIntro > span { padding-top: 14px; }
+.approachIntroduction { display: grid; gap: 18px; margin-top: 28px; }
+.approachIntroduction p { font-size: 15px; }
 .approachRow { display: grid; grid-template-columns: .25fr .95fr 1.7fr .1fr; gap: 35px; padding-block: 42px; border-top: 1px solid var(--border-subtle); }
 .approachRow:last-child { border-bottom: 1px solid var(--border-subtle); }
 .rowIndex { font-size: 11px; color: var(--color-coffee); padding-top: 12px; }
@@ -87,11 +89,11 @@
 .finalSymbol > span { display: block; font-family: var(--font-cormorant),serif; font-size: 24px; margin-top: 28px; }
 .floatingWhatsapp { position: fixed; bottom: 24px; right: 24px; z-index: 40; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--color-coffee); color: var(--color-ivory); border: 1px solid var(--color-sand); font-size: 23px; }
 @media (min-width: 1600px) { .heroGrid { min-height: 790px; } }
-@media (max-width: 1050px) { .heroGrid { gap: 42px; } .heroCopy h1 { font-size: 76px; } .heroDescription { font-size: 13px; } .heroVisual { height: 540px; } .aboutGrid { gap: 50px; } .approachRow { gap: 20px; grid-template-columns: .15fr .9fr 1.6fr; } .approachRow > i { display: none; } .processIntro { grid-template-columns: .8fr 1.2fr; } .processIntro p { grid-column: 2; padding-top: 0; } .timeline { gap: 30px; } .finalGrid { gap: 8%; } }
+@media (max-width: 1050px) { .heroGrid { gap: 42px; } .heroCopy h1 { font-size: clamp(56px, 6vw, 68px); } .heroDescription { font-size: 13px; } .heroVisual { height: 540px; } .aboutGrid { gap: 50px; } .approachRow { gap: 20px; grid-template-columns: .15fr .9fr 1.6fr; } .approachRow > i { display: none; } .processIntro { grid-template-columns: .8fr 1.2fr; } .processIntro p { grid-column: 2; padding-top: 0; } .timeline { gap: 30px; } .finalGrid { gap: 8%; } }
 @media (max-width: 800px) {
   .heroGrid { grid-template-columns: 1fr; gap: 40px; min-height: auto; padding-top: 38px; padding-bottom: 30px; }
   .heroCopy { padding-block: 0; }
-  .heroCopy h1 { font-size: clamp(58px, 10.8vw, 88px); margin-top: 20px; margin-bottom: 24px; }
+  .heroCopy h1 { font-size: clamp(44px, 8.8vw, 68px); margin-top: 20px; margin-bottom: 24px; }
   .titleLine { display: inline; } .titleLine > span { display: inline; } .titleLine:not(:last-child)::after { content: " "; }
   .heroCopy h1 { max-width: 580px; }
   .heroDescription { font-size: 15px; max-width: 520px; }
@@ -106,4 +108,4 @@
   .faq { grid-template-columns: 1fr; gap: 40px; } .faqItem button { font-size: 13px; min-height: 76px; } .faqAnswer p { padding-right: 20px; }
   .finalCta { padding-block: 75px; } .finalGrid { grid-template-columns: 1fr; gap: 65px; } .finalCta h2 { font-size: clamp(52px, 10vw, 80px); } .finalSymbol { display: flex; align-items: center; gap: 25px; text-align: left; } .finalSymbol svg { width: 85px; margin: 0; } .finalSymbol > span { margin: 0; font-size: 25px; } .floatingWhatsapp { width: 46px; height: 46px; bottom: 16px; right: 16px; }
 }
-@media (max-width: 360px) { .heroCopy h1 { font-size: 53px; } .heroDescription { font-size: 14px; } .portraitFigure figcaption { flex-direction: column; gap: 5px; } .button { padding-inline: 20px; } }
+@media (max-width: 360px) { .heroCopy h1 { font-size: 44px; } .heroDescription { font-size: 14px; } .portraitFigure figcaption { flex-direction: column; gap: 5px; } .button { padding-inline: 20px; } }

@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { site } from "@/data/site-content";
 
-export const alt = "Joacylanny Psicologia — Um espaço para a sua história.";
+export const alt = site.seo.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,7 +13,8 @@ export default async function OpenGraphImage() {
     {/* ImageResponse requires a native image with inline bytes. */}
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img src={`data:image/png;base64,${logo.toString("base64")}`} width={650} height={260} alt="" style={{ objectFit: "contain" }} />
-    <div style={{ display: "flex", fontFamily: "serif", fontSize: 54, marginTop: 25 }}>Um espaço para a sua história.</div>
-    <div style={{ display: "flex", fontSize: 18, marginTop: 24 }}>{`${site.role} · ${site.crp}`}</div>
+    <div style={{ display: "flex", fontFamily: "serif", fontSize: 54, marginTop: 25 }}>{site.seo.imageTitle}</div>
+    <div style={{ display: "flex", fontSize: 18, marginTop: 24 }}>{`${site.role} | ${site.positioning}`}</div>
+    <div style={{ display: "flex", fontSize: 16, marginTop: 16 }}>{site.crp}</div>
   </div>, { ...size });
 }

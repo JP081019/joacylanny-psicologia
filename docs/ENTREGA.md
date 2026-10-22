@@ -1,5 +1,7 @@
 # Entrega — Joacylanny Psicologia
 
+Atualização de conteúdo em 22/10/2026: o posicionamento vigente prioriza a escuta psicanalítica. Consulte `docs/REPOSICIONAMENTO.md` para os novos textos e a validação desta atualização. O registro abaixo documenta a entrega inicial.
+
 Implementação local concluída em 21 de outubro de 2026, seguindo os três documentos fornecidos, preservados em `docs/referencias/`.
 
 Prévia local: http://127.0.0.1:3000. O site atual não foi modificado nem houve publicação em hospedagem.

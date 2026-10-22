@@ -43,6 +43,7 @@ O domínio canônico configurado é https://joacylannypsi.com.br. Alterações n
 - `src/components/animations/PortalExperience.tsx`: abertura e animações de rolagem.
 - `src/app/politica-de-privacidade/`: texto de privacidade.
 - `docs/ENTREGA.md`: resultado, verificações e pendências de publicação.
+- `docs/REPOSICIONAMENTO.md`: atualização de 22/10/2026, com foco em Psicanálise, textos vigentes e aprovações pendentes.
 - `docs/RECURSOS.md`: origem das imagens e prompt da arquitetura.
 
 Antes de publicar, confirmar as modalidades disponíveis, idade mínima, frequência, contato e redação final com a profissional. Não há endereço, Instagram, avaliações neuropsicológicas, preços ou depoimentos inventados.
