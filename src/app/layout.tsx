@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: { type: "website", locale: "pt_BR", siteName: site.brand, title: site.seo.title, description: site.seo.description, url: site.url, images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.seo.title }] },
   twitter: { card: "summary_large_image", title: site.seo.title, description: site.seo.description, images: ["/opengraph-image"] },
-  icons: { icon: "/logo/Arco Minimalista em Tons Terrosos.ico", apple: site.images.monogram },
+  icons: { icon: site.images.favicon, apple: site.images.monogram },
 };
 
 export const viewport: Viewport = { themeColor: "#F6F1EB" };

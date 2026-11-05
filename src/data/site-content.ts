@@ -3,6 +3,8 @@
 // A denominação profissional definitiva e o CRP seguem sujeitos à aprovação.
 // Modalidade e idade mínima ainda precisam de confirmação direta.
 const heroTitleLines = ["Um espaço para ", "escutar o que ", "há de singular ", "em você."] as const;
+const phoneInternational = "+5599991840178";
+const logoDirectory = "/logo/Logo - Joacylanny";
 
 export const site = {
   name: "Joacylanny",
@@ -11,8 +13,10 @@ export const site = {
   positioning: "Atendimento de orientação psicanalítica",
   crp: "CRP 22/02243",
   url: "https://joacylannypsi.com.br",
-  phone: "+55 99 91840-1780",
-  whatsapp: "https://wa.me/5599918401780?text=" + encodeURIComponent("Olá, Joacylanny! Gostaria de obter informações sobre o atendimento psicológico."),
+  phone: "(99) 99184-0178",
+  phoneInternational,
+  email: "joacylanny.psi@gmail.com",
+  whatsapp: `https://wa.me/${phoneInternational.slice(1)}?text=` + encodeURIComponent("Olá, Joacylanny! Gostaria de obter informações sobre o atendimento psicológico."),
   hero: {
     eyebrow: "Psicologia e Psicanálise",
     title: heroTitleLines.join(""),
@@ -50,9 +54,10 @@ export const site = {
     imageTitle: "Psicologia e Psicanálise",
   },
   images: {
-    horizontalLogo: "/logo/Logotipo Minimalista Joacylanny Psicologia.png",
-    darkLogo: "/logo/Logo Elegante Joacylanny Psicologia.png",
-    monogram: "/logo/Arco Minimalista em Tons Terrosos.png",
+    horizontalLogo: `${logoDirectory}/Logotipo Minimalista Joacylanny Psicologia.png`,
+    footerLogo: `${logoDirectory}/Logo transparente minimalista Joacylanny Psicanálise.png`,
+    monogram: `${logoDirectory}/Arco Minimalista em Tons Terrosos.png`,
+    favicon: `${logoDirectory}/Arco Minimalista em Tons Terrosos.ico`,
     portrait: "/img/Retrato Sereno no Jardim Florido.png",
     architecture: "/images/architecture/portal.webp",
   },
